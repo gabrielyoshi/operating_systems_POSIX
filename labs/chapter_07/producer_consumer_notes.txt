@@ -1,0 +1,28 @@
+#
+
+#define TRUE 1
+
+int BUFFER_SIZE = 5;
+
+#define EMPTY_SEM_NAME "/buffer-empty-sem"
+
+buffer_item buffer[BUFFER_SIZE];
+
+producer() {
+	sem_wait(empty)
+	// Enter critical section
+	pthread_mutex_lock(&mutex);
+	buffer[insertPointer] = item;
+	if (sem_wait(empty) == -1){
+		perror("sem_wait empty");
+		return -1;
+	}
+	// tells consumer that one more item
+	sem_post(full);
+
+consumer() {
+	// Signal to producer that one more empty position is available
+	sem_wait(full)
+	sem_post(empty);
+	}	
+}

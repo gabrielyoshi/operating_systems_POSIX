@@ -1,0 +1,4 @@
+Operating systems manage processes and resources.
+This file tests an ordinary pipe-based copy.
+Line 3 contains numbers: 149 2026.
+Line 4 contains punctuation: !@#$%^&*()
