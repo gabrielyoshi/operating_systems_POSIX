@@ -1,0 +1,4 @@
+/simulated_disk
+*.o
+*.dSYM/
+.DS_Store
