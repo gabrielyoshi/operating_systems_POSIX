@@ -13,8 +13,6 @@ CS 149 coursework and practice programs in C and Bash covering processes, pipes,
 - `examples/`: threaded Monte Carlo estimation of pi.
 - `practice/`: C and shell exercises, including unfinished examples.
 
-Word documents and pre-existing compiled binaries are retained locally in ignored `documents/` and `build/` directories.
-
 ## Build and run
 
 Use a POSIX environment with a C compiler. From the repository root:
@@ -44,4 +42,5 @@ For other C programs, compile individually; use `-pthread` for threading example
 
 ## Work in progress
 
-These are coursework snapshots, not uniformly finished or tested programs. The `drafts/` directories contain incomplete code. `practice/pointer_basics.c` also contains an existing variable-name typo. Renaming and organizing files did not change source contents.
+These are coursework snapshots, not uniformly finished or tested programs. 
+The `drafts/` directories contain incomplete code. 
