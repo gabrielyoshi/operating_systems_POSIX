@@ -1,8 +1,9 @@
 package multhithreading;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class DiningPhilosopher implements DiningServer, Runnable {
+public class DiningPhilosopher implements DiningServer {
 	static final int NUM_PHILOSOPHERS = 5;
 	
 	public enum StateNames {
@@ -95,33 +96,30 @@ public class DiningPhilosopher implements DiningServer, Runnable {
 			lock.unlock();
 		}
 	}
-	
-	@Override
-	public void run() {
-		while (true) {
-			
-		}
-	}
 
 public static void main(String args[]) throws InterruptedException {
 	
 	DiningPhilosopher server = new DiningPhilosopher(); // shared resource
 	Thread[] threads = new Thread[NUM_PHILOSOPHERS];
 	
+	System.out.printf("%d philosophers sit down around a table.%n", NUM_PHILOSOPHERS);
+	
 	for (int i = 0; i < NUM_PHILOSOPHERS; i++) {
-		System.out.printf("Philosopher %d is %s.%n", i, server.getPhilosopherState(i));
+		
 		final int id = i;
 		
 		Runnable task = () -> {
 			try {
+				// Lambda expression the defines the functional operation of each thread
 				while (true) {
-					System.out.printf("%d philosophers sit down around a table.%n", id);
-					Thread.sleep(1000);
+					System.out.printf("Philosopher %d is %s.%n", id, server.getPhilosopherState(id));
+					int seconds = ThreadLocalRandom.current().nextInt(1,4);
+					Thread.sleep(seconds * 1000L);
 					server.takeForks(id);
 					try {
-						System.out.printf("Philosopher %d is eating.%n", id);
-						Thread.sleep(1000);
-						server.returnForks(id);
+						System.out.printf("Philosopher %d is %s.%n", id, server.getPhilosopherState(id));
+						int pseconds = ThreadLocalRandom.current().nextInt(1,4);
+						Thread.sleep(pseconds * 1000L);
 					} finally {
 						server.returnForks(id);
 					}
