@@ -61,11 +61,11 @@ public class DiningPhilosopher implements DiningServer {
 			System.out.printf("Philosopher %d is %s.%n", philosopherNumber, philosopher[philosopherNumber]);
 			while (philosopher[left] == StateNames.EATING || philosopher[right] == StateNames.EATING) {
 				System.out.printf("Philosopher %d must wait.%n", philosopherNumber);
-				self[philosopherNumber].await();
+				self[philosopherNumber].awaitUninterruptibly(); // disables interrupts
 			}
 			philosopher[philosopherNumber] = StateNames.EATING;
 			
-		} catch (InterruptedException ie) {}
+		}
 		finally {
 			lock.unlock();
 		}
